@@ -10,22 +10,40 @@
 #define MAC 2
 #define MAC_FN 3
 
+#define UF_RESET &DE_BLD
+#define Device_USB &DE_USB
+#define UF_BT1 &DE_BT1
+#define UF_BT2 &DE_BT2
+#define UF_BT3 &DE_BT3
+
 / {
+    chosen {
+        zmk,matrix-transform = &white_ansi_tsangan_split_bs_rshift_transform;
+    };
+
     macros {
-        win_logout: win_logout {
+        domain_name: domain_name {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <10>;
             tap-ms = <10>;
-            bindings = <&macro_press &kp LGUI>, <&macro_tap &kp L>, <&macro_release &kp LGUI>;
+            bindings = <&macro_tap &kp K &kp Y &kp N9 &kp N1 &kp DOT &kp H &kp A &kp I>;
         };
 
-        win_login: win_login {
+        gen_id: gen_id {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <10>;
             tap-ms = <10>;
-            bindings = <&macro_press &kp LCTRL &kp LALT>, <&macro_tap &kp DEL>, <&macro_release &kp LCTRL &kp LALT>;
+            bindings = <&macro_tap &kp N1 &kp N5 &kp N7 &kp N9 &kp N8 &kp N6 &kp N7 &kp N5>;
+        };
+
+        macro_name: macro_name {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <15>;
+            tap-ms = <15>;
+            bindings = <&macro_tap &kp LS(N) &kp G &kp U &kp Y &kp E &kp E &kp N &kp X &kp SPACE &kp LS(H) &kp A &kp I &kp R &kp SPACE &kp LS(K) &kp Y &kp R>;
         };
 
         pass91: pass91 {
@@ -52,28 +70,20 @@
             bindings = <&macro_tap &kp C &kp O &kp R &kp P &kp BSLH &kp K &kp Y &kp N9 &kp N1 &kp DOT &kp H &kp A &kp I>;
         };
 
-        domain_name: domain_name {
+        macro_code: macro_code {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <10>;
             tap-ms = <10>;
-            bindings = <&macro_tap &kp K &kp Y &kp N9 &kp N1 &kp DOT &kp H &kp A &kp I>;
+            bindings = <&none>;
         };
 
-        gen_id: gen_id {
+        open_nx: open_nx {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <10>;
             tap-ms = <10>;
-            bindings = <&macro_tap &kp N1 &kp N5 &kp N7 &kp N9 &kp N8 &kp N6 &kp N7 &kp N5>;
-        };
-
-        macro_name: macro_name {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <15>;
-            tap-ms = <15>;
-            bindings = <&macro_tap &kp LS(N) &kp G &kp U &kp Y &kp E &kp E &kp N &kp X &kp SPACE &kp LS(H) &kp A &kp I &kp R &kp SPACE &kp LS(K) &kp Y &kp R>;
+            bindings = <&open_zmks>;
         };
     };
 
@@ -83,44 +93,44 @@
         default_layer {
             label = "Win";
             bindings = <
-&gresc     &kp N1    &kp N2    &kp N3    &kp N4    &kp N5    &kp N6    &kp N7    &kp N8    &kp N9    &kp N0    &kp MINUS &kp EQUAL &kp BSLH  &kp DEL
+&gresc     &kp N1    &kp N2    &kp N3    &kp N4    &kp N5    &kp N6    &kp N7    &kp N8    &kp N9    &kp N0    &kp MINUS &kp EQUAL &kp BSLH   &kp DELETE
 &kp TAB    &kp Q     &kp W     &kp E     &kp R     &kp T     &kp Y     &kp U     &kp I     &kp O     &kp P     &kp LBKT  &kp RBKT  &kp BSPC
-&kp LCTRL  &kp A     &kp S     &kp D     &kp F     &kp G     &kp H     &kp J     &kp K     &kp L     &kp SEMI  &kp SQT             &kp ENTER
-&kp LSHFT  &none     &kp Z     &kp X     &kp C     &kp V     &kp B     &kp N     &kp M     &kp COMMA &kp DOT   &kp FSLH  &kp RSHFT &mo WIN_FN
-&none      &kp LGUI  &kp LALT                                &kp SPACE                     &none     &kp RALT  &kp RALT  &win_login &none
+&kp LCTRL  &kp A     &kp S     &kp D     &kp F     &kp G     &kp H     &kp J     &kp K     &kp L     &kp SEMI  &kp SQT             &kp RET
+&kp LSHFT  &kp Z     &kp X     &kp C     &kp V     &kp B     &kp N     &kp M     &kp COMMA &kp DOT   &kp FSLH  &kp RSHIFT          &mo WIN_FN
+&trans     &kp LGUI  &kp LALT                                &kp SPACE                     &kp RALT  &kp LC(LA(DEL))                &trans
             >;
         };
 
         win_function_layer {
             label = "Win Function";
             bindings = <
-&kp GRAVE    &kp F1    &kp F2    &kp F3    &kp F4    &kp F5    &kp F6    &kp F7    &kp F8    &kp F9    &kp F10   &kp F11   &kp F12   &DE_BLD      &gen_id
-&DE_USB      &DE_BT1   &DE_BT2   &DE_BT3   &none     &none     &none     &none     &none     &none     &kp PSCRN &kp SLCK  &kp PAUSE_BREAK &gen_id
-&kp CAPS     &none     &none     &DE_OZW   &none     &none     &none     &none     &none     &none     &kp LEFT  &kp RIGHT           &macro_name
-&domain_name &none     &none     &none     &none     &none     &none     &none     &none     &none     &kp UP    &win_logout &trans      &trans
-&none        &pass91   &pass90                                 &none                         &none     &none     &none     &corp_domain &none
+&trans        &kp F1    &kp F2    &kp F3      &kp F4   &kp F5   &kp F6   &kp F7  &kp F8   &kp F9    &kp F10   &kp F11       &kp F12        &DE_BLD      &kp INSERT
+&trans        &trans    &kp UP    &DE_USB     &DE_BT1  &DE_BT2  &DE_BT3  &trans  &trans   &trans    &kp UP    &kp PAGE_UP   &kp PAGE_DOWN  &gen_id 
+&trans        &kp LEFT  &kp DOWN  &kp RIGHT   &trans   &trans   &trans   &trans  &trans   &kp LEFT  &kp DOWN  &kp RIGHT     &macro_name
+&domain_name  &soft_off &trans    &macro_code &bt BT_CLR_ALL &trans &open_nx &trans &trans &trans   &kp LG(L) &kp LC(LA(DEL))              &trans
+&trans        &pass91   &pass90                                &trans                            &kp CLCK  &corp_domain                 &trans
             >;
         };
 
         mac_layer {
             label = "Mac";
             bindings = <
-&gresc     &kp N1    &kp N2    &kp N3    &kp N4    &kp N5    &kp N6    &kp N7    &kp N8    &kp N9    &kp N0    &kp MINUS &kp EQUAL &kp BSLH  &kp DEL
+&gresc     &kp N1    &kp N2    &kp N3    &kp N4    &kp N5    &kp N6    &kp N7    &kp N8    &kp N9    &kp N0    &kp MINUS &kp EQUAL &kp BSLH   &kp DELETE
 &kp TAB    &kp Q     &kp W     &kp E     &kp R     &kp T     &kp Y     &kp U     &kp I     &kp O     &kp P     &kp LBKT  &kp RBKT  &kp BSPC
-&kp LCTRL  &kp A     &kp S     &kp D     &kp F     &kp G     &kp H     &kp J     &kp K     &kp L     &kp SEMI  &kp SQT             &kp ENTER
-&kp LSHFT  &none     &kp Z     &kp X     &kp C     &kp V     &kp B     &kp N     &kp M     &kp COMMA &kp DOT   &kp FSLH  &kp RSHFT &mo MAC_FN
-&none      &kp LALT  &kp LGUI                                &kp SPACE                     &none     &kp RGUI  &kp RGUI  &win_login &none
+&kp LCTRL  &kp A     &kp S     &kp D     &kp F     &kp G     &kp H     &kp J     &kp K     &kp L     &kp SEMI  &kp SQT             &kp RET
+&kp LSHFT  &kp Z     &kp X     &kp C     &kp V     &kp B     &kp N     &kp M     &kp COMMA &kp DOT   &kp FSLH  &kp RSHIFT          &mo MAC_FN
+&trans     &kp LALT  &kp LGUI                                &kp SPACE                     &kp RGUI  &kp LC(LA(DEL))                &trans
             >;
         };
 
         mac_function_layer {
             label = "Mac Function";
             bindings = <
-&kp GRAVE    &kp C_BRI_DN &kp C_BRI_UP &kp C_AC_DESKTOP_SHOW_ALL_WINDOWS &kp C_AC_DESKTOP_SHOW_ALL_APPLICATIONS &kp C_AC_SEARCH &kp GLOBE &kp C_PREV &kp C_PP &kp C_NEXT &kp C_MUTE &kp C_VOL_DN &kp C_VOL_UP &DE_BLD &gen_id
-&DE_USB      &DE_BT1      &DE_BT2      &DE_BT3   &none     &none     &none     &none     &none     &none     &none     &UGSPD    &UGSPI    &gen_id
-&kp CAPS     &none        &none        &DE_OZW   &none     &none     &none     &none     &none     &none     &kp LEFT  &kp RIGHT           &macro_name
-&domain_name &none        &none        &none     &none     &none     &none     &none     &none     &none     &kp UP    &win_logout &trans   &trans
-&none        &to WIN      &none                                      &none                         &none     &none     &none     &corp_domain &none
+&trans        &kp C_BRI_DN &kp C_BRI_UP &kp C_AC_DESKTOP_SHOW_ALL_WINDOWS &kp C_AC_DESKTOP_SHOW_ALL_APPLICATIONS &kp C_AC_SEARCH &kp GLOBE &kp C_PREV &kp C_PP &kp C_NEXT &kp C_MUTE &kp C_VOL_DN &kp C_VOL_UP &DE_BLD &kp INSERT
+&trans        &trans       &kp UP       &DE_USB      &DE_BT1   &DE_BT2  &DE_BT3  &trans  &trans   &trans    &kp UP    &kp PAGE_UP   &kp PAGE_DOWN  &gen_id 
+&trans        &kp LEFT     &kp DOWN     &kp RIGHT    &trans    &trans   &trans   &trans  &trans   &kp LEFT  &kp DOWN  &kp RIGHT     &macro_name
+&domain_name  &soft_off    &trans       &macro_code  &bt BT_CLR_ALL &trans &open_nx &trans &trans &trans   &kp LG(L) &kp LC(LA(DEL))              &trans
+&trans        &to WIN      &none                                       &trans                            &kp CLCK  &corp_domain                 &trans
             >;
         };
 
