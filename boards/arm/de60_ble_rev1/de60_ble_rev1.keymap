@@ -87,7 +87,7 @@
 &kp TAB    &kp Q     &kp W     &kp E     &kp R     &kp T     &kp Y     &kp U     &kp I     &kp O     &kp P     &kp LBKT  &kp RBKT  &kp BSPC
 &kp LCTRL  &kp A     &kp S     &kp D     &kp F     &kp G     &kp H     &kp J     &kp K     &kp L     &kp SEMI  &kp SQT             &kp ENTER
 &kp LSHFT  &none     &kp Z     &kp X     &kp C     &kp V     &kp B     &kp N     &kp M     &kp COMMA &kp DOT   &kp FSLH  &kp RSHFT &mo WIN_FN
-&none      &kp LALT  &kp LGUI                                &kp SPACE                     &none     &win_login &win_login &kp RALT &none
+&none      &kp LGUI  &kp LALT                                &kp SPACE                     &none     &kp RALT  &kp RALT  &win_login &none
             >;
         };
 
@@ -98,7 +98,7 @@
 &DE_USB      &DE_BT1   &DE_BT2   &DE_BT3   &none     &none     &none     &none     &none     &none     &kp PSCRN &kp SLCK  &kp PAUSE_BREAK &gen_id
 &kp CAPS     &none     &none     &DE_OZW   &none     &none     &none     &none     &none     &none     &kp LEFT  &kp RIGHT           &macro_name
 &domain_name &none     &none     &none     &none     &none     &none     &none     &none     &none     &kp UP    &win_logout &trans      &trans
-&none        &pass90   &pass91                                 &none                         &none     &corp_domain &corp_domain &none  &none
+&none        &pass91   &pass90                                 &none                         &none     &none     &none     &corp_domain &none
             >;
         };
 
@@ -109,7 +109,7 @@
 &kp TAB    &kp Q     &kp W     &kp E     &kp R     &kp T     &kp Y     &kp U     &kp I     &kp O     &kp P     &kp LBKT  &kp RBKT  &kp BSPC
 &kp LCTRL  &kp A     &kp S     &kp D     &kp F     &kp G     &kp H     &kp J     &kp K     &kp L     &kp SEMI  &kp SQT             &kp ENTER
 &kp LSHFT  &none     &kp Z     &kp X     &kp C     &kp V     &kp B     &kp N     &kp M     &kp COMMA &kp DOT   &kp FSLH  &kp RSHFT &mo MAC_FN
-&none      &kp LGUI  &kp LALT                                &kp SPACE                     &none     &win_login &win_login &kp RGUI &none
+&none      &kp LALT  &kp LGUI                                &kp SPACE                     &none     &kp RGUI  &kp RGUI  &win_login &none
             >;
         };
 
@@ -120,7 +120,7 @@
 &DE_USB      &DE_BT1      &DE_BT2      &DE_BT3   &none     &none     &none     &none     &none     &none     &none     &UGSPD    &UGSPI    &gen_id
 &kp CAPS     &none        &none        &DE_OZW   &none     &none     &none     &none     &none     &none     &kp LEFT  &kp RIGHT           &macro_name
 &domain_name &none        &none        &none     &none     &none     &none     &none     &none     &none     &kp UP    &win_logout &trans   &trans
-&none        &to WIN      &none                                      &none                         &none     &corp_domain &corp_domain &none &none
+&none        &to WIN      &none                                      &none                         &none     &none     &none     &corp_domain &none
             >;
         };
 
